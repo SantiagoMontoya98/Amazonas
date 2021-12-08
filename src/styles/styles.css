@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Amazonas";
+  src: url("../assets/AmazonEmber_Rg.ttf");
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: "Amazonas Bold";
+  src: url("../assets/AmazonEmber_Bd.ttf");
+  font-display: fallback;
+}
