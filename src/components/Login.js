@@ -1,18 +1,21 @@
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginContainer } from "../styles/LoginStyles";
 import * as Yup from "yup";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   loginEmailPassword,
   loginFacebook,
   loginGoogle,
 } from "../redux/actions/actionLogin";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Login = () => {
   const dispatch = useDispatch();
+
+  const navegar = useNavigate();
 
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -42,9 +45,10 @@ const Login = () => {
         }}
         validationSchema={LoginSchema}
         onSubmit={(values) => {
-          // same shape as initial values
           console.log(values);
           dispatch(loginEmailPassword(values.email, values.pass));
+          navegar("/");
+          window.location.reload();
         }}
       >
         {({ values, errors }) => (
@@ -53,20 +57,26 @@ const Login = () => {
             <div className="input-container">
               <label for="correo">Dirección de correo electrónico</label>
               <Field type="email" name="email" id="correo" />
-              {errors.email && values.email ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.email}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="email"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.email}
+                  </div>
+                )}
+              />
             </div>
             <div className="input-container">
               <label for="pass">Contraseña</label>
               <Field type="password" name="pass" id="pass" />
-              {errors.pass && values.pass ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.pass}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="pass"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.pass}
+                  </div>
+                )}
+              />
             </div>
             <input type="submit" value="Continuar" className="button" />
           </Form>

@@ -6,10 +6,10 @@ import { GlobalStyles } from "../styles/GlobalStyles";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
 
-const Home = () => {
+const Home = ({ userName }) => {
   return (
     <HomeContainer>
-      <Header />
+      <Header userName={userName} />
       <NavBar />
       <Slider />
       <CardsMain />

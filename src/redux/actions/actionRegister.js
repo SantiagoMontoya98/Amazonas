@@ -20,7 +20,7 @@ export const registerAsync = (name, email, password) => {
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then(async ({ user }) => {
-        console.log(user);
+        //console.log(user);
 
         await updateProfile(auth.currentUser, { displayName: name });
 

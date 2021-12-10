@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RegistroContainer } from "../styles/RegistroStyles";
 import * as Yup from "yup";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { registerAsync } from "../redux/actions/actionRegister";
 
 const Registro = () => {
   const dispatch = useDispatch();
+
+  const navegar = useNavigate();
 
   const RegisterSchema = Yup.object().shape({
     name: Yup.string()
@@ -48,30 +50,37 @@ const Registro = () => {
           pass2: "",
         }}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => {          
+        onSubmit={(values) => {
           dispatch(registerAsync(values.name, values.email, values.pass1));
+          navegar("/login");
         }}
       >
-        {({ values, errors }) => (
+        {({ errors }) => (
           <Form className="form-login">
             <h1 className="h1">Crear Cuenta</h1>
             <div className="input-container">
               <label for="name">Tu nombre</label>
               <Field type="text" name="name" id="name" />
-              {errors.name && values.name ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.name}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="name"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.name}
+                  </div>
+                )}
+              />
             </div>
             <div className="input-container">
               <label for="correo">Dirección de correo electrónico</label>
               <Field type="email" name="email" id="correo" />
-              {errors.email && values.email ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.email}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="email"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.email}
+                  </div>
+                )}
+              />
             </div>
             <div className="input-container">
               <label for="pass1">Contraseña</label>
@@ -81,20 +90,26 @@ const Registro = () => {
                 name="pass1"
                 placeholder="Como mínimo 6 caracteres"
               />
-              {errors.pass1 && values.pass1 ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.pass1}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="pass1"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.pass1}
+                  </div>
+                )}
+              />
             </div>
             <div className="input-container">
               <label for="pass2">Vuelve a escribir la contraseña</label>
               <Field type="password" id="pass2" name="pass2" />
-              {errors.pass2 && values.pass2 ? (
-                <div className="error">
-                  <em className="logo-error">! </em> {errors.pass2}
-                </div>
-              ) : null}
+              <ErrorMessage
+                name="pass2"
+                component={() => (
+                  <div className="error">
+                    <em className="logo-error">! </em> {errors.pass2}
+                  </div>
+                )}
+              />
             </div>
             <input type="submit" value="Continuar" className="button" />
             <p className="login">

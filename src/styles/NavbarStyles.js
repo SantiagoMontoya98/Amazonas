@@ -24,6 +24,9 @@ export const NavBarContainer = styled.div`
   .ubicacion {
     /* border: 1px solid green; */
     text-align: left;
+    &:hover {
+      cursor: default;
+    }
   }
 
   .options-container {

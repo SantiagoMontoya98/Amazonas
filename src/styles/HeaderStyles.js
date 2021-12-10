@@ -127,6 +127,32 @@ export const IdentificateContainer = styled.div`
     text-decoration-color: var(--color-azul);
     color: var(--color-blanco);
   }
+  .options {
+    /* border: 1px solid green; */
+    width: 100px;
+    margin-top: 10px;
+    z-index: 5;
+  }
+  .login {
+    background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+    border-width: 0;
+    padding: 5px 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #a88734 #9c7e31 #846a29;
+    font-family: "Amazonas", Arial, sans-serif;
+    font-size: 14px;
+    border-radius: 3px;
+    color: #111;
+    margin-top: 5px;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 40%) inset;
+    &:hover {
+      background: #f0c457;
+    }
+  }
+  .link {
+    text-decoration-line: none;
+  }
 `;
 
 export const CarContainer = styled.div`

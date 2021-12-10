@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutAsync } from "../redux/actions/actionLogin";
 import { getUbicacion2 } from "../redux/actions/actionUbicacion";
 import {
   CarContainer,
@@ -10,7 +11,7 @@ import {
   SearchContainer,
 } from "../styles/HeaderStyles";
 
-const Header = () => {
+const Header = ({ userName }) => {
   let url = "";
 
   const [ubicacion, setUbicacion] = useState("");
@@ -18,9 +19,9 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  /* useEffect(() => {
-    getCoordenadas();
-  }); */
+  const [display, setDisplay] = useState("none");
+
+  const navegar = useNavigate();
 
   const getCoordenadas = () => {
     //watchPosition
@@ -40,12 +41,32 @@ const Header = () => {
   const getUbicacion = async (endpoint) => {
     const resp = await fetch(endpoint);
     const { results } = await resp.json();
-    console.log(results[0].formatted_address);
+    //console.log(results[0].formatted_address);
     setUbicacion(results[9].formatted_address);
     setUbicacion2(results[0].formatted_address);
+    localStorage.setItem("pais", results[9].formatted_address);
+    localStorage.setItem("direccion", results[0].formatted_address);
   };
 
   const handleUbicacion = () => getCoordenadas();
+
+  const handleLogin = () => {
+    if (display === "none") {
+      setDisplay("");
+    }
+    if (display === "") {
+      setDisplay("none");
+    }
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutAsync());
+    window.location.reload();
+  };
+
+  useEffect(() => {
+    setUbicacion(localStorage.getItem("pais"));
+  });
 
   useEffect(() => {
     dispatch(getUbicacion2(ubicacion2));
@@ -62,14 +83,18 @@ const Header = () => {
       </Link>
 
       <DireccionContainer className="container" onClick={handleUbicacion}>
-        <p className="hola">{ubicacion === "" ? "Hola" : "Enviar a"}</p>
+        <p className="hola">
+          {localStorage.getItem("pais") === null ? "Hola" : "Enviar a"}
+        </p>
         <div className="direccion">
           <img
             src="https://res.cloudinary.com/da6fz1omm/image/upload/v1638142583/Im%C3%A1genes%20Amazonas/gps_mfcaav.png"
             alt="gps"
           />
           <p className="elige">
-            {ubicacion === "" ? "Elige tu dirección" : ubicacion}
+            {localStorage.getItem("pais") === null
+              ? "Elige tu dirección"
+              : ubicacion}
           </p>
         </div>
       </DireccionContainer>
@@ -90,12 +115,30 @@ const Header = () => {
         </div>
       </SearchContainer>
 
-      <IdentificateContainer className="container">
-        <Link to="/login" className="link-login">
-          <p className="identificate">Hola, identificate</p>
-
-          <p className="cuenta">Cuenta</p>
-        </Link>
+      <IdentificateContainer className="container" onClick={handleLogin}>
+        <p className="identificate">
+          Hola, {userName === "" ? "identificate" : userName}
+        </p>
+        <p className="cuenta">Cuenta</p>
+        <div style={{ display: display }} className="options">
+          <Link to="/login" className="link">
+            <button
+              className="login"
+              style={
+                userName === "" ? { display: "block" } : { display: "none" }
+              }
+            >
+              Indentificate
+            </button>
+          </Link>
+          <button
+            className="login"
+            style={userName === "" ? { display: "none" } : { display: "block" }}
+            onClick={handleLogout}
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </IdentificateContainer>
 
       <CarContainer className="container">

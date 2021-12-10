@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import { google, facebook } from "../../firebase/firebaseConfig";
 
@@ -56,5 +57,22 @@ export const loginFacebook = () => {
       .catch((e) => {
         console.log(e);
       });
+  };
+};
+
+export const logoutAsync = () => {
+  return (dispatch) => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        dispatch(logoutSync());
+      })
+      .catch((err) => console.log(err.message));
+  };
+};
+
+export const logoutSync = () => {
+  return {
+    type: types.logout,
   };
 };

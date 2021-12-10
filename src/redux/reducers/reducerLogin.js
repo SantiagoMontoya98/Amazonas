@@ -8,6 +8,9 @@ export const reducerLogin = (state = {}, action) => {
         name: action.payload.name,
       };
 
+    case types.logout:
+      return {};
+
     default:
       return state;
   }
