@@ -1,6 +1,6 @@
 const PoliticaPrivacidad = () => {
   return (
-    <div style={{ padding: "30px" }}>
+    <div style={{ padding: "30px", fontFamily: "Amazonas" }}>
       <strong>Privacy Policy</strong>{" "}
       <p>
         Santiago Montoya Cano built the amazonas app as a Commercial app. This

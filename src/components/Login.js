@@ -34,7 +34,6 @@ const Login = () => {
           className="logo"
         />
       </Link>
-      <img src="" alt="" />
 
       <Formik
         initialValues={{
@@ -54,7 +53,7 @@ const Login = () => {
             <div className="input-container">
               <label for="correo">Dirección de correo electrónico</label>
               <Field type="email" name="email" id="correo" />
-              {errors.email && values.email === "" ? (
+              {errors.email && values.email ? (
                 <div className="error">
                   <em className="logo-error">! </em> {errors.email}
                 </div>
@@ -63,7 +62,7 @@ const Login = () => {
             <div className="input-container">
               <label for="pass">Contraseña</label>
               <Field type="password" name="pass" id="pass" />
-              {errors.pass && values.pass === "" ? (
+              {errors.pass && values.pass ? (
                 <div className="error">
                   <em className="logo-error">! </em> {errors.pass}
                 </div>

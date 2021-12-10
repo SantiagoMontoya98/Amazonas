@@ -18,10 +18,16 @@ export const NavBarContainer = styled.div`
     text-decoration-line: none;
     text-decoration-color: var(--color-azul);
     color: var(--color-blanco);
+    /* border: 1px solid green; */
+  }
+
+  .ubicacion {
+    /* border: 1px solid green; */
+    text-align: left;
   }
 
   .options-container {
-    width: 45%;
+    width: 68%;
     height: 100%;
     /* border: 1px solid red; */
     display: flex;

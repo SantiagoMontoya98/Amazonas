@@ -23,7 +23,7 @@ const AppRouter = () => {
         <Route path="detalle/:id" element={<Detalle />} />
         <Route path="login" element={<Login />} />
         <Route path="registro" element={<Registro />} />
-        <Route path="politica-privacidad" element={<PoliticaPrivacidad />} />
+        <Route path="politica" element={<PoliticaPrivacidad />} />
       </Routes>
     </BrowserRouter>
   );

@@ -48,9 +48,7 @@ const Registro = () => {
           pass2: "",
         }}
         validationSchema={RegisterSchema}
-        onSubmit={(values) => {
-          // same shape as initial values
-          //console.log(values);
+        onSubmit={(values) => {          
           dispatch(registerAsync(values.name, values.email, values.pass1));
         }}
       >

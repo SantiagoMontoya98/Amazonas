@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { NavBarContainer } from "../styles/NavbarStyles";
 
 const NavBar = () => {
+  const ubicacion = useSelector((state) => state.ubicacion);
+
+  const [display, setDisplay] = useState("none");
+
   return (
     <NavBarContainer>
       <div className="options-container">
@@ -27,6 +33,9 @@ const NavBar = () => {
         <Link to="/productos/oculus" className="link-products">
           <p className="container">Oculus</p>
         </Link>
+        <p className="container ubicacion">
+          {ubicacion === "" ? "" : ubicacion}
+        </p>
       </div>
     </NavBarContainer>
   );
