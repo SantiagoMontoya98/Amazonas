@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutAsync } from "../redux/actions/actionLogin";
 import { getUbicacion2 } from "../redux/actions/actionUbicacion";
@@ -11,13 +11,15 @@ import {
   SearchContainer,
 } from "../styles/HeaderStyles";
 
-const Header = ({ userName }) => {
+const Header = () => {
   let url = "";
 
   const [ubicacion, setUbicacion] = useState("");
   const [ubicacion2, setUbicacion2] = useState("");
 
   const dispatch = useDispatch();
+
+  const { name } = useSelector((state) => state.userLogin);
 
   const [display, setDisplay] = useState("none");
 
@@ -61,7 +63,7 @@ const Header = ({ userName }) => {
 
   const handleLogout = () => {
     dispatch(logoutAsync());
-    window.location.reload();
+    //window.location.reload();
   };
 
   useEffect(() => {
@@ -117,7 +119,7 @@ const Header = ({ userName }) => {
 
       <IdentificateContainer className="container" onClick={handleLogin}>
         <p className="identificate">
-          Hola, {userName === "" ? "identificate" : userName}
+          Hola, {name === undefined ? "identificate" : name?.split(" ")[0]}
         </p>
         <p className="cuenta">Cuenta</p>
         <div style={{ display: display }} className="options">
@@ -125,7 +127,7 @@ const Header = ({ userName }) => {
             <button
               className="login"
               style={
-                userName === "" ? { display: "block" } : { display: "none" }
+                name === undefined ? { display: "block" } : { display: "none" }
               }
             >
               Indentificate
@@ -133,7 +135,9 @@ const Header = ({ userName }) => {
           </Link>
           <button
             className="login"
-            style={userName === "" ? { display: "none" } : { display: "block" }}
+            style={
+              name === undefined ? { display: "none" } : { display: "block" }
+            }
             onClick={handleLogout}
           >
             Cerrar sesión

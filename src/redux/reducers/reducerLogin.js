@@ -6,10 +6,13 @@ export const reducerLogin = (state = {}, action) => {
       return {
         id: action.payload.id,
         name: action.payload.name,
+        logged: true,
       };
 
     case types.logout:
-      return {};
+      return {
+        logged: false,
+      };
 
     default:
       return state;

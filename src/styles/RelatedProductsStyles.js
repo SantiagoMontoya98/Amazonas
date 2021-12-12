@@ -4,7 +4,7 @@ export const RelatedContainer = styled.div`
   /* border: 1px solid green; */
   width: 95vw;
   height: 400px;
-  margin-bottom: 50px;
+  margin-bottom: 150px;
   margin-left: auto;
   margin-right: auto;
   .text {

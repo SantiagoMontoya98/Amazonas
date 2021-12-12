@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RegistroContainer = styled.div`
+export const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   /* border: 1px solid green; */
@@ -14,11 +14,12 @@ export const RegistroContainer = styled.div`
     margin-top: 10px;
   }
   .form-login {
-    width: 25%;
-    border: 1px solid green;
+    width: 50%;
+    /* border: 1px solid green; */
     padding: 20px;
     border-radius: 4px;
     border: 1px solid #ddd;
+    margin-bottom: 20px;
   }
   .h1 {
     font-family: "Amazonas", Arial, sans-serif;
@@ -42,13 +43,42 @@ export const RegistroContainer = styled.div`
     border-top-color: #949494;
     border-radius: 3px;
     padding: 3px 7px;
-    font-size: 13px;
+    font-size: 16px;
     outline: 0;
     height: 30px;
   }
   input:focus {
     border: 1px solid var(--color-naranjado-2);
     box-shadow: 0 0 5px 1px var(--color-naranjado-2);
+  }
+  textarea {
+    width: 100%;
+    border: 1px solid #a6a6a6;
+    border-top-color: #949494;
+    border-radius: 3px;
+    padding: 3px 7px;
+    font-size: 16px;
+    outline: 0;
+    height: 100px;
+    resize: none;
+  }
+  textarea:focus {
+    border: 1px solid var(--color-naranjado-2);
+    box-shadow: 0 0 5px 1px var(--color-naranjado-2);
+  }
+  .buttons-img {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  button {
+    border-width: 0;
+    margin-top: 20px;
+  }
+  select {
+    width: 100%;
+    font-family: "Amazonas", Arial, sans-serif;
   }
   .button {
     background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
@@ -62,6 +92,7 @@ export const RegistroContainer = styled.div`
     border-radius: 3px;
     color: #111;
     box-shadow: 0 1px 0 rgb(255 255 255 / 40%) inset;
+    margin-bottom: 20px;
   }
   .button:hover {
     background: #f0c457;
@@ -88,5 +119,25 @@ export const RegistroContainer = styled.div`
   .logo-error {
     margin-right: 5px;
     font-weight: bold;
+  }
+  .errors-img {
+    /* border: 1px solid red; */
+    width: 100%;
+    display: flex;
+  }
+  .ocultar {
+    display: none;
+  }
+  .link-inicio {
+    font-family: "Amazonas", Arial, sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #0066c0;
+    text-decoration: none;
+    margin-bottom: 100px;
+  }
+  .link-inicio:hover {
+    color: var(--color-naranjado-5);
+    text-decoration: underline;
   }
 `;

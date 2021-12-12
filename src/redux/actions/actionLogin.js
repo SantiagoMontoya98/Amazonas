@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { google, facebook } from "../../firebase/firebaseConfig";
 
-const loginSync = (id, name) => {
+export const loginSync = (id, name) => {
   return {
     type: types.login,
     payload: {

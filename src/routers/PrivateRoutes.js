@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-const PublicRoutes = ({ children }) => {
+const PrivateRoutes = ({ children }) => {
   const { logged } = useSelector((state) => state.userLogin);
 
-  return logged ? <Navigate to="/" /> : children;
+  return logged === undefined || logged ? children : <Navigate to="/login" />;
 };
 
-export default PublicRoutes;
+export default PrivateRoutes;

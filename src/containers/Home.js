@@ -5,11 +5,12 @@ import { HomeContainer } from "../styles/HomeStyles";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import Header from "../components/Header";
 import NavBar from "../components/NavBar";
+import { useSelector } from "react-redux";
 
-const Home = ({ userName }) => {
+const Home = () => {
   return (
     <HomeContainer>
-      <Header userName={userName} />
+      <Header />
       <NavBar />
       <Slider />
       <CardsMain />

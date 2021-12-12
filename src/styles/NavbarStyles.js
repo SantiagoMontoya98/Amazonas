@@ -23,6 +23,7 @@ export const NavBarContainer = styled.div`
 
   .ubicacion {
     /* border: 1px solid green; */
+    width: 40%;
     text-align: left;
     &:hover {
       cursor: default;
@@ -30,7 +31,6 @@ export const NavBarContainer = styled.div`
   }
 
   .options-container {
-    width: 68%;
     height: 100%;
     /* border: 1px solid red; */
     display: flex;

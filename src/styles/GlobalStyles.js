@@ -55,4 +55,17 @@ export const GlobalStyles = createGlobalStyle`
     color: #212529;
   }
 
+  .swal2-styled.swal2-confirm {
+      border: 0;
+      border-radius: 0.25em;
+      background: initial;
+      background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+      color: black;
+      font-size: 1em;
+      
+      &:hover {
+        background: #f0c457;
+      }
+  }
+
 `;

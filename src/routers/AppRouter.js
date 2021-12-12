@@ -1,33 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "../components/Header";
-import NavBar from "../components/NavBar";
 import ProductsCategory from "../components/ProductsCategory";
 import Home from "../containers/Home";
 import { GlobalStyles } from "../styles/GlobalStyles";
 import ProductsGamers from "../components/ProductsGamers";
 import ProductstList from "../components/ProductsList";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Detalle from "../containers/Detalle";
 import Login from "../components/Login";
 import Registro from "../components/Registro";
 import PoliticaPrivacidad from "../components/PoliticaPrivacidad";
 import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import PublicRoutes from "./PublicRoutes";
+import CreateProduct from "../components/CreateProduct";
+import FormProducts from "../components/FormProducts";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSync, logoutSync } from "../redux/actions/actionLogin";
+import PrivateRoutes from "./PrivateRoutes";
+import AnotherRoutes from "./AnotherRoutes";
 
 const AppRouter = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [userName, setuserName] = useState("");
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const auth = getAuth();
 
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
-        setuserName(user.displayName.split(" ")[0]);
-        //dispatch(loginEmailPassword(user.uid, user.displayName));
-        setisLoggedIn(true);
+        dispatch(loginSync(user.uid, user.displayName));
       } else {
-        setisLoggedIn(false);
+        dispatch(logoutSync());
       }
     });
   }, []);
@@ -36,17 +37,12 @@ const AppRouter = () => {
     <BrowserRouter>
       <GlobalStyles />
       <Routes>
-        <Route path="/" element={<Home userName={userName} />} />
-        <Route path="categoria" element={<ProductsCategory />} />
-        <Route path="gamers" element={<ProductsGamers />} />
-        <Route path="productos/:id" element={<ProductstList />} />
-        <Route path="detalle/:id" element={<Detalle />} />
-        <Route path="politica" element={<PoliticaPrivacidad />} />
+        <Route path="*" element={<AnotherRoutes />} />
 
         <Route
           path="login"
           element={
-            <PublicRoutes isAuthenticated={isLoggedIn}>
+            <PublicRoutes>
               <Login />
             </PublicRoutes>
           }
@@ -55,9 +51,27 @@ const AppRouter = () => {
         <Route
           path="registro"
           element={
-            <PublicRoutes isAuthenticated={isLoggedIn}>
+            <PublicRoutes>
               <Registro />
             </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="crear-producto"
+          element={
+            <PrivateRoutes>
+              <CreateProduct />
+            </PrivateRoutes>
+          }
+        />
+
+        <Route
+          path="form-productos"
+          element={
+            <PrivateRoutes>
+              <FormProducts />
+            </PrivateRoutes>
           }
         />
       </Routes>

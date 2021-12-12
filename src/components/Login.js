@@ -48,7 +48,7 @@ const Login = () => {
           console.log(values);
           dispatch(loginEmailPassword(values.email, values.pass));
           navegar("/");
-          window.location.reload();
+          //window.location.reload();
         }}
       >
         {({ values, errors }) => (
