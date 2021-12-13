@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logoutAsync } from "../redux/actions/actionLogin";
 import { getUbicacion2 } from "../redux/actions/actionUbicacion";
 import {
-  CarContainer,
   DireccionContainer,
   HeaderContainer,
   IdentificateContainer,
@@ -22,8 +21,6 @@ const Header = () => {
   const { name } = useSelector((state) => state.userLogin);
 
   const [display, setDisplay] = useState("none");
-
-  const navegar = useNavigate();
 
   const getCoordenadas = () => {
     //watchPosition

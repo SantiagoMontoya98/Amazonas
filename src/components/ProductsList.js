@@ -3,7 +3,10 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { ListContainer } from "../styles/ProductsListStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsFirebase } from "../redux/actions/actionProducts";
+import {
+  getProductsFirebase,
+  regresarProducts,
+} from "../redux/actions/actionProducts";
 import uuid from "react-uuid";
 import Header from "./Header";
 import NavBar from "./NavBar";
@@ -27,6 +30,7 @@ const ProductsList = () => {
     if (id === "oculus") dispatch(getProductsFirebase(id));
     if (id === "electronicos") dispatch(getProductsFirebase(id));
     if (id === "ofertas") dispatch(getProductsFirebase(id));
+    dispatch(regresarProducts(`/productos/${id}`));
   }, []);
 
   useEffect(() => {
@@ -41,9 +45,10 @@ const ProductsList = () => {
     if (id === "oculus") dispatch(getProductsFirebase(id));
     if (id === "electronicos") dispatch(getProductsFirebase(id));
     if (id === "ofertas") dispatch(getProductsFirebase(id));
+    dispatch(regresarProducts(`/productos/${id}`));
   }, [id]);
 
-  console.log(products);
+  //console.log(products);
 
   return (
     <>

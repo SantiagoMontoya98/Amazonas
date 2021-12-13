@@ -10,7 +10,6 @@ import {
   loginGoogle,
 } from "../redux/actions/actionLogin";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -44,8 +43,8 @@ const Login = () => {
           pass: "",
         }}
         validationSchema={LoginSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          //console.log(values);
           dispatch(loginEmailPassword(values.email, values.pass));
           navegar("/");
           //window.location.reload();

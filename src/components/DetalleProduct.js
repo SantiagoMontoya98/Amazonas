@@ -15,6 +15,8 @@ const DetalleProduct = () => {
 
   const { products } = useSelector((state) => state.products);
 
+  const { regresar } = useSelector((state) => state.products);
+
   const [product, setProduct] = useState();
 
   const [cantidad, setCantidad] = useState(1);
@@ -39,7 +41,7 @@ const DetalleProduct = () => {
     });
   }, [id]);
 
-  const regresar = () => navegar(-1);
+  const regresarProduct = () => navegar(regresar);
 
   const createProduct = (product) => {
     addDoc(collection(db, "carrito"), product)
@@ -59,7 +61,7 @@ const DetalleProduct = () => {
       />
       <DetalleContainer>
         <span className="arrow">‹</span>
-        <span className="link" onClick={regresar}>
+        <span className="link" onClick={regresarProduct}>
           Volver a los resultados
         </span>
         <div className="container-main">

@@ -6,7 +6,6 @@ import ProductstList from "../components/ProductsList";
 import Detalle from "../containers/Detalle";
 import PoliticaPrivacidad from "../components/PoliticaPrivacidad";
 import Carrito from "../components/Carrito";
-import Compra from "../components/Compra";
 
 const AnotherRoutes = () => {
   return (

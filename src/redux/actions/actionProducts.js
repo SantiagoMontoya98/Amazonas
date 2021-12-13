@@ -24,3 +24,10 @@ export const getProductsFirebase = (table) => {
     dispatch(getProducts(products));
   };
 };
+
+export const regresarProducts = (link) => {
+  return {
+    type: types.regresar,
+    payload: link,
+  };
+};

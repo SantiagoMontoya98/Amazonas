@@ -23,10 +23,12 @@ export const loginEmailPassword = (email, password) => {
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(loginSync(user.uid, user.displayName));
-        console.log("Bienvenid@ " + user.displayName);
+        //console.log("Bienvenid@ " + user.displayName);
+        return "Hola";
       })
       .catch((e) => {
-        console.log("El usuario no existe");
+        //console.log("El usuario no existe");
+        return e;
       });
   };
 };

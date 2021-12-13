@@ -4,4 +4,5 @@ export const types = {
   login: "[User] Login",
   logout: "[User] Logout",
   ubicacion: "[User] Ubicación",
+  regresar: "[Product] Regresar",
 };
