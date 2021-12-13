@@ -13,6 +13,32 @@ export const HeaderContainer = styled.div`
     border: 1px solid #fff;
     border-radius: 2px;
   }
+
+  .car-container {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    color: var(--color-blanco);
+    cursor: pointer;
+    width: 250px;
+    text-decoration-line: none;
+    .img-car {
+      /* border: 1px solid green; */
+    }
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* border: 1px solid yellow; */
+      height: 38px;
+    }
+    .text {
+      margin-top: 20px;
+      font-family: "Amazonas Bold", sans-serif;
+      font-size: 14px;
+    }
+  }
 `;
 
 export const DireccionContainer = styled.div`

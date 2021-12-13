@@ -43,6 +43,8 @@ const ProductsList = () => {
     if (id === "ofertas") dispatch(getProductsFirebase(id));
   }, [id]);
 
+  console.log(products);
+
   return (
     <>
       <Header />

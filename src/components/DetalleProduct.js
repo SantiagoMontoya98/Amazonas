@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { DetalleContainer } from "../styles/DetalleProductStyles";
 import CategoriayMas from "./CategoriayMas";
+import { addDoc, collection } from "@firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 const DetalleProduct = () => {
   const { id } = useParams();
@@ -12,6 +15,8 @@ const DetalleProduct = () => {
   const { products } = useSelector((state) => state.products);
 
   const [product, setProduct] = useState();
+
+  const [cantidad, setCantidad] = useState(1);
 
   useEffect(() => {
     products.forEach((el) => {
@@ -26,6 +31,15 @@ const DetalleProduct = () => {
   }, [id]);
 
   const regresar = () => navegar(-1);
+
+  const createProduct = (product) => {
+    addDoc(collection(db, "carrito"), product)
+      .then((resp) => {})
+      .catch((err) => console.log(err.message));
+  };
+
+  const handleChangeCantidad = ({ target }) =>
+    setCantidad(Number(target.value));
 
   return (
     <>
@@ -97,11 +111,34 @@ const DetalleProduct = () => {
               US${product !== undefined ? product.price : ""}
             </p>
             <p className="send">Envío Gratis</p>
-            <select className="cantidad">
-              <option>Cantidad: 1</option>
-              <option>Cantidad: 2</option>
+            <select className="cantidad" onChange={handleChangeCantidad}>
+              <option value="1">Cantidad: 1</option>
+              <option value="2">Cantidad: 2</option>
+              <option value="3">Cantidad: 3</option>
+              <option value="4">Cantidad: 4</option>
+              <option value="5">Cantidad: 5</option>
+              <option value="6">Cantidad: 6</option>
+              <option value="7">Cantidad: 7</option>
+              <option value="8">Cantidad: 8</option>
+              <option value="9">Cantidad: 9</option>
             </select>
-            <button className="agregar">Agregar al Carrito</button>
+            <Link to="/carrito">
+              <button
+                className="agregar"
+                onClick={() =>
+                  createProduct({
+                    name: product?.name,
+                    img: product?.img1,
+                    price: product?.price,
+                    amount: cantidad,
+                    path: product?.path,
+                  })
+                }
+              >
+                Agregar al Carrito
+              </button>
+            </Link>
+
             <button className="comprar">Comprar ahora</button>
           </div>
         </div>

@@ -145,7 +145,9 @@ const Header = () => {
         </div>
       </IdentificateContainer>
 
-      <CarContainer className="container">
+      <Link to="/carrito"></Link>
+
+      <Link to="/carrito" className="container car-container">
         <div>
           <img
             src="https://res.cloudinary.com/da6fz1omm/image/upload/v1638148907/Im%C3%A1genes%20Amazonas/shopping-cart_tc2egg.png"
@@ -156,7 +158,7 @@ const Header = () => {
         <div className="text-container">
           <p className="text">Carrito</p>
         </div>
-      </CarContainer>
+      </Link>
     </HeaderContainer>
   );
 };

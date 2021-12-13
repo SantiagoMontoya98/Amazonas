@@ -5,6 +5,8 @@ import ProductsGamers from "../components/ProductsGamers";
 import ProductstList from "../components/ProductsList";
 import Detalle from "../containers/Detalle";
 import PoliticaPrivacidad from "../components/PoliticaPrivacidad";
+import Carrito from "../components/Carrito";
+import Compra from "../components/Compra";
 
 const AnotherRoutes = () => {
   return (
@@ -15,6 +17,7 @@ const AnotherRoutes = () => {
       <Route path="productos/:id" element={<ProductstList />} />
       <Route path="detalle/:id" element={<Detalle />} />
       <Route path="politica" element={<PoliticaPrivacidad />} />
+      <Route path="carrito" element={<Carrito />} />
       <Route path="*" element={<Home />} />
     </Routes>
   );

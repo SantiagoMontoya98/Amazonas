@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginSync, logoutSync } from "../redux/actions/actionLogin";
 import PrivateRoutes from "./PrivateRoutes";
 import AnotherRoutes from "./AnotherRoutes";
+import Compra from "../components/Compra";
 
 const AppRouter = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,15 @@ const AppRouter = () => {
             <PublicRoutes>
               <Registro />
             </PublicRoutes>
+          }
+        />
+
+        <Route
+          path="compra"
+          element={
+            <PrivateRoutes>
+              <Compra />
+            </PrivateRoutes>
           }
         />
 
