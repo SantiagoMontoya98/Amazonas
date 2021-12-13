@@ -66,6 +66,6 @@ export const GlobalStyles = createGlobalStyle`
       &:hover {
         background: #f0c457;
       }
-  }
+  }  
 
 `;

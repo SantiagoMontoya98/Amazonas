@@ -6,6 +6,7 @@ import { DetalleContainer } from "../styles/DetalleProductStyles";
 import CategoriayMas from "./CategoriayMas";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import ReactImageMagnify from "react-image-magnify";
 
 const DetalleProduct = () => {
   const { id } = useParams();
@@ -18,15 +19,23 @@ const DetalleProduct = () => {
 
   const [cantidad, setCantidad] = useState(1);
 
+  const [img, setImg] = useState("");
+
   useEffect(() => {
     products.forEach((el) => {
-      if (el.path === id) setProduct(el);
+      if (el.path === id) {
+        setProduct(el);
+        setImg(el?.img1);
+      }
     });
   }, []);
 
   useEffect(() => {
     products.forEach((el) => {
-      if (el.path === id) setProduct(el);
+      if (el.path === id) {
+        setProduct(el);
+        setImg(el?.img1);
+      }
     });
   }, [id]);
 
@@ -40,6 +49,8 @@ const DetalleProduct = () => {
 
   const handleChangeCantidad = ({ target }) =>
     setCantidad(Number(target.value));
+
+  const handleChangeImg = ({ target }) => setImg(target.src);
 
   return (
     <>
@@ -57,24 +68,37 @@ const DetalleProduct = () => {
               src={product !== undefined ? product.img1 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
+              onClick={handleChangeImg}
             />
             <img
               src={product !== undefined ? product.img2 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
+              onClick={handleChangeImg}
             />
             <img
               src={product !== undefined ? product.img3 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
+              onClick={handleChangeImg}
             />
           </div>
 
           <div className="product">
-            <img
-              src={product !== undefined ? product.img1 : ""}
-              alt={product !== undefined ? product.name : ""}
-              className="img"
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: product !== undefined ? product.name : "",
+                  isFluidWidth: true,
+                  src: img,
+                },
+                largeImage: {
+                  src: img,
+                  width: 1200,
+                  height: 1800,
+                },
+                shouldUsePositiveSpaceLens: true,
+              }}
             />
           </div>
 

@@ -37,6 +37,7 @@ export const DetalleContainer = styled.div`
     height: 35px;
     margin-bottom: 10px;
     /* border: 1px solid var(--color-negro); */
+    cursor: pointer;
   }
   .product {
     /* border: 1px solid green; */
