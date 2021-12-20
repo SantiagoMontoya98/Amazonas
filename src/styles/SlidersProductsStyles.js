@@ -27,5 +27,6 @@ export const SliderProductsContainer = styled.div`
     height: 150px;
     /* border: 1px solid red; */
     cursor: pointer;
+    display: inline;
   }
 `;

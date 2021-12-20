@@ -44,7 +44,6 @@ export const NavBarContainer = styled.div`
     /* border: 1px solid green; */
     display: flex;
     align-items: center;
-    margin-right: 15px;
   }
   .todo-container:hover {
     cursor: pointer;

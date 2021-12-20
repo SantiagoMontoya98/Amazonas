@@ -1,10 +1,29 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { NavBarContainer } from "../styles/NavbarStyles";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 
 const NavBar = () => {
   const { ubicacion } = useSelector((state) => state.ubicacion);
   const { logged } = useSelector((state) => state.userLogin);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const btnRef = React.useRef();
+
+  const { name } = useSelector((state) => state.userLogin);
 
   return (
     <NavBarContainer>
@@ -17,18 +36,14 @@ const NavBar = () => {
             ? { width: "100%" }
             : localStorage.getItem("direccion") !== null
             ? { width: "60%" }
-            : { width: "40%" }
+            : { width: "60%" }
         }
       >
-        <div className="todo-container">
-          <img
-            src="https://res.cloudinary.com/da6fz1omm/image/upload/v1638142583/Im%C3%A1genes%20Amazonas/menu_keg2ot.png"
-            alt=""
-          />
-          <p className="todo">Todo</p>
-        </div>
         <Link to="/productos/computadores" className="link-products">
           <p className="container products">Computadores</p>
+        </Link>
+        <Link to="/productos/controles" className="link-products">
+          <p className="container products">Controles</p>
         </Link>
         <Link to="/productos/videojuegos" className="link-products">
           <p className="container">Videojuegos</p>

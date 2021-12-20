@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
     --color-precio: #B12704;
     --color-amarillo: #fed813;
     --color-error: #c40000;
-  }
+  }  
 
   *,
   *::before,

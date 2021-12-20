@@ -173,7 +173,7 @@ const Header = () => {
 
       <IdentificateContainer className="container" onClick={handleLogin}>
         <p className="identificate">
-          Hola, {name === undefined ? "identificate" : name?.split(" ")[0]}
+          Hola, {name === undefined ? "identifícate" : name?.split(" ")[0]}
         </p>
         <p className="cuenta">Cuenta</p>
         <div style={{ display: display }} className="options">

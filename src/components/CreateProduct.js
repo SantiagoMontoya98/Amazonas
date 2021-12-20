@@ -104,14 +104,14 @@ const CreateProduct = () => {
           if (values.img1 === undefined) values.img1 = url1;
           if (values.img2 === undefined) values.img2 = url2;
           if (values.img3 === undefined) values.img3 = url3;
-          console.log(values);
+          //console.log(values);
           if (
             values.img1 === undefined ||
             values.img2 === undefined ||
             values.img3 === undefined
           ) {
-            console.log("error");
-            console.log(values);
+            //console.log("error");
+            //console.log(values);
             setErrorsImg("");
 
             if (values.img1 === undefined) {
@@ -134,7 +134,7 @@ const CreateProduct = () => {
             setErrorImg1("hidden");
             setErrorImg2("hidden");
             setErrorImg3("hidden");
-            console.log("se creo");
+            //console.log("se creo");
             createProduct(values.category.toLowerCase(), {
               name: values.name,
               category: values.category,

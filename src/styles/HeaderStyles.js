@@ -51,7 +51,7 @@ export const HeaderContainer = styled.div`
       margin: 0;
       padding: 5px;
       &:hover {
-        background-color: #888;
+        background-color: var(--color-fondo);
       }
     }
     a {
@@ -110,6 +110,11 @@ export const SearchContainer = styled.div`
     cursor: pointer;
     margin: 0;
     border-radius: 4px 0 0 4px;
+    background-color: var(--color-fondo);
+    border-right: 1px solid #dadada;
+    &:hover {
+      background-color: #dadada;
+    }
   }
   .buscador {
     width: 70%;
@@ -129,7 +134,7 @@ export const SearchContainer = styled.div`
     width: 40px;
     height: 35px;
     position: absolute;
-    top: 1px;
+    top: 0.5px;
     right: 0;
     background-color: var(--color-naranjado);
     border-radius: 0 4px 4px 0;
