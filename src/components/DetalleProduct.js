@@ -70,19 +70,19 @@ const DetalleProduct = () => {
               src={product !== undefined ? product.img1 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
-              onClick={handleChangeImg}
+              onMouseOver={handleChangeImg}
             />
             <img
               src={product !== undefined ? product.img2 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
-              onClick={handleChangeImg}
+              onMouseOver={handleChangeImg}
             />
             <img
               src={product !== undefined ? product.img3 : ""}
               alt={product !== undefined ? product.name : ""}
               className="more-img"
-              onClick={handleChangeImg}
+              onMouseOver={handleChangeImg}
             />
           </div>
 
