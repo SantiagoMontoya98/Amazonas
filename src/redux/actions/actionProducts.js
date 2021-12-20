@@ -9,6 +9,13 @@ const getProducts = (products) => {
   };
 };
 
+const getAllProducts = (products) => {
+  return {
+    type: types.allProducts,
+    payload: products,
+  };
+};
+
 export const getProductsFirebase = (table) => {
   return async (dispatch) => {
     let docRef = collection(db, table);
@@ -22,6 +29,18 @@ export const getProductsFirebase = (table) => {
     });
 
     dispatch(getProducts(products));
+  };
+};
+
+export const getAllProductsFirebase = (table) => {
+  return async (dispatch) => {
+    let docRef = collection(db, table);
+    let getData = await getDocs(docRef);
+
+    getData.forEach((doc) => {
+      //console.log(doc.data());
+      dispatch(getAllProducts(doc.data()));
+    });
   };
 };
 

@@ -3,6 +3,7 @@ import { types } from "../types/types";
 const initialState = {
   products: [],
   regresar: "",
+  allProducts: [],
 };
 
 export const reducerProducts = (state = initialState, action) => {
@@ -17,6 +18,12 @@ export const reducerProducts = (state = initialState, action) => {
       return {
         ...state,
         regresar: action.payload,
+      };
+
+    case types.allProducts:
+      return {
+        ...state,
+        allProducts: [...state.allProducts, action.payload],
       };
 
     default:

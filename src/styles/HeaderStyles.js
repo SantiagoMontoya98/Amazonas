@@ -39,6 +39,26 @@ export const HeaderContainer = styled.div`
       font-size: 14px;
     }
   }
+
+  .lista-productos {
+    background-color: #fff;
+    width: 35.8%;
+    position: absolute;
+    top: 50px;
+    left: 490px;
+    z-index: 999;
+    p {
+      margin: 0;
+      padding: 5px;
+      &:hover {
+        background-color: #888;
+      }
+    }
+    a {
+      color: black;
+      text-decoration-line: none;
+    }
+  }
 `;
 
 export const DireccionContainer = styled.div`

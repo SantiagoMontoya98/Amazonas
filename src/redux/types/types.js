@@ -5,4 +5,5 @@ export const types = {
   logout: "[User] Logout",
   ubicacion: "[User] Ubicación",
   regresar: "[Product] Regresar",
+  allProducts: "[Product] Obtener Todos",
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logoutAsync } from "../redux/actions/actionLogin";
+import { getAllProductsFirebase } from "../redux/actions/actionProducts";
 import { getUbicacion2 } from "../redux/actions/actionUbicacion";
 import {
   DireccionContainer,
@@ -9,18 +10,28 @@ import {
   IdentificateContainer,
   SearchContainer,
 } from "../styles/HeaderStyles";
+import uuid from "react-uuid";
 
 const Header = () => {
   let url = "";
 
   const [ubicacion, setUbicacion] = useState("");
+
   const [ubicacion2, setUbicacion2] = useState("");
 
   const dispatch = useDispatch();
 
   const { name } = useSelector((state) => state.userLogin);
 
+  const { allProducts } = useSelector((state) => state.products);
+
   const [display, setDisplay] = useState("none");
+
+  const [display2, setDisplay2] = useState("none");
+
+  const [bandera, setBandera] = useState(0);
+
+  const [productos, setProductos] = useState([]);
 
   const getCoordenadas = () => {
     //watchPosition
@@ -63,6 +74,35 @@ const Header = () => {
     //window.location.reload();
   };
 
+  const handleSearch = ({ target }) => {
+    //console.log(target.value);
+    //console.log(bandera);
+    if (bandera === 0 && allProducts.length !== 65) {
+      dispatch(getAllProductsFirebase("SliderProducts"));
+      dispatch(getAllProductsFirebase("auriculares"));
+      dispatch(getAllProductsFirebase("computadores"));
+      dispatch(getAllProductsFirebase("controles"));
+      dispatch(getAllProductsFirebase("electronicos"));
+      dispatch(getAllProductsFirebase("oculus"));
+      dispatch(getAllProductsFirebase("ofertas"));
+      dispatch(getAllProductsFirebase("ratones"));
+      dispatch(getAllProductsFirebase("sillas"));
+      dispatch(getAllProductsFirebase("tablets"));
+      dispatch(getAllProductsFirebase("teclados"));
+      dispatch(getAllProductsFirebase("videojuegos"));
+      setBandera(1);
+    }
+
+    setProductos(
+      allProducts.filter((el) =>
+        el.name.toLowerCase().includes(target.value.toLowerCase())
+      )
+    );
+
+    if (productos.length > 0) setDisplay2("");
+    if (target.value === "") setDisplay2("none");
+  };
+
   useEffect(() => {
     setUbicacion(localStorage.getItem("pais"));
   });
@@ -70,6 +110,8 @@ const Header = () => {
   useEffect(() => {
     dispatch(getUbicacion2(ubicacion2));
   }, [ubicacion2]);
+
+  //console.log(productos);
 
   return (
     <HeaderContainer>
@@ -101,10 +143,8 @@ const Header = () => {
       <SearchContainer>
         <select className="categoria" value="ordernar">
           <option value="">Todos los departamentos</option>
-          <option value="">Hogar</option>
-          <option value="">Electronicos</option>
         </select>
-        <input type="text" className="buscador" />
+        <input type="text" className="buscador" onKeyDown={handleSearch} />
         <div className="lupa-container">
           <img
             src="https://res.cloudinary.com/da6fz1omm/image/upload/v1638394439/Im%C3%A1genes%20Amazonas/search_aperd5.svg"
@@ -113,6 +153,23 @@ const Header = () => {
           />
         </div>
       </SearchContainer>
+
+      <div className="lista-productos" style={{ display: display2 }}>
+        {productos.map((el) => (
+          <Link
+            to={`/productos/${
+              el.category === "Hardware"
+                ? "ofertas"
+                : el.category === "Electrónicos"
+                ? "electronicos"
+                : el.category.toLowerCase()
+            }`}
+            key={uuid()}
+          >
+            <p>{el.name}</p>
+          </Link>
+        ))}
+      </div>
 
       <IdentificateContainer className="container" onClick={handleLogin}>
         <p className="identificate">

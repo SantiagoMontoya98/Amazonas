@@ -45,6 +45,7 @@ const ProductsList = () => {
     if (id === "oculus") dispatch(getProductsFirebase(id));
     if (id === "electronicos") dispatch(getProductsFirebase(id));
     if (id === "ofertas") dispatch(getProductsFirebase(id));
+    if (id === "hogar") dispatch(getProductsFirebase("SliderProducts"));
     dispatch(regresarProducts(`/productos/${id}`));
   }, [id]);
 
