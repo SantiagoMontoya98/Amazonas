@@ -53,6 +53,7 @@ const Registro = () => {
         onSubmit={(values) => {
           dispatch(registerAsync(values.name, values.email, values.pass1));
           navegar("/login");
+          window.location.reload();
         }}
       >
         {({ errors }) => (
