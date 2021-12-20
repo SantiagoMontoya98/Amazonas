@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { NavBarContainer } from "../styles/NavbarStyles";
 
 const NavBar = () => {
+  const { ubicacion } = useSelector((state) => state.ubicacion);
+
   const { logged } = useSelector((state) => state.userLogin);
 
   return (
