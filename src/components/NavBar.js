@@ -2,28 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { NavBarContainer } from "../styles/NavbarStyles";
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  useDisclosure,
-  Input,
-  Button,
-} from "@chakra-ui/react";
 
 const NavBar = () => {
-  const { ubicacion } = useSelector((state) => state.ubicacion);
   const { logged } = useSelector((state) => state.userLogin);
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const btnRef = React.useRef();
-
-  const { name } = useSelector((state) => state.userLogin);
 
   return (
     <NavBarContainer>
